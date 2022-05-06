@@ -12,24 +12,11 @@ def index(request):
     return render(request, 'index.html')
 
 def signup(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        email = request.POST['email']
-        pass1 = request.POST['pass1']
-        pass2 = request.POST['pass2']
+    
+    return render(request, 'signup.html')
 
-
-        myuser = User.objects.create_user(username, email, pass1)
-        myuser.first_name = fname
-        myuser.last_name = lname
-        myuser.save()
-        messages.success(request, 'your account is created')
-        return render(request, 'signup.html')
-
-    else:
-        return HttpResponse('not found')
+    # else:
+    #     return HttpResponse('not found')
 
     
 
@@ -45,5 +32,46 @@ def login(request):
 #        return render(request, 'login.html')
 
 
+def register(request):
+    
+    
+  
+    if request.method == 'POST':
+        username = request.POST['name']
+        email = request.POST['email']
+        pass1 = request.POST['pass1']
+        pass2 = request.POST['re_pass']
+
+        # 2 may check for arrorneous inputs
+        if len(username)>10:
+            messages.error(request,"username must be under must be under 10 characters")
+            return redirect('login')
+            
+        # 2 may 
+        if not username.isalnum():
+            messages.error(request,"username should only contaion letters and numbers")
+            return redirect('login')
+       
+        if pass1 != pass2:
+            messages.error(request,"password do not match")
+            return redirect('login')
+           
+        
+        return render(request, 'register.html')
+         #else: return  HttpResponse('not found')
+
+
+      
+
+
+
+         #myuser = User.objects.create_user(username, email, pass1)
+         #myuser.first_name = fname
+         #myuser.last_name = lname
+         #myuser.save()
+        # messages.success(request, 'your account is created')
+        
+
+    
 
 
