@@ -11,6 +11,20 @@ from django.contrib.auth.forms import UserCreationForm
 def index(request):
     return render(request, 'index.html')
 
+def index(request):
+    return render(request, 'index.html')
+
+def index(request):
+    return render (request, 'social media.html')
+
+def technology(request):
+    return render (request, 'technology.html')
+
+
+def writting(request):
+    return render (request, 'writting.html')
+
+
 def signup(request):
     
     return render(request, 'signup.html')
