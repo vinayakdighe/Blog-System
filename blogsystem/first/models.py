@@ -8,3 +8,5 @@ class reg(models.Model):
     pass1=models.CharField(max_length=50)
     re_pass=models.CharField(max_length=50)
 
+#def __str__(self):
+    #return self.name +" "+ self.models.Email +" "

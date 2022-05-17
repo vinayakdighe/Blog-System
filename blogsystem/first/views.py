@@ -1,6 +1,10 @@
 from colorsys import TWO_THIRD
+from importlib import import_module
 from pyexpat.errors import messages
 from urllib import response
+#samruddhi add model here
+from first.models import reg
+#upto this
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login,authenticate
 from django.contrib.auth.models import User
@@ -14,8 +18,8 @@ def index(request):
 def index(request):
     return render(request, 'index.html')
 
-def index(request):
-    return render (request, 'social media.html')
+def signup(request):
+    return render(request, 'signup.html')
 
 def technology(request):
     return render (request, 'technology.html')
@@ -24,10 +28,22 @@ def technology(request):
 def writting(request):
     return render (request, 'writting.html')
 
-
-def signup(request):
-    
+#make change by samruddhi
+def saveRegister(request):
+    if request.method=="POST":
+            name=request.POST.get("name")
+            email=request.POST.get("email")
+            pass1=request.POST.get("pass1")
+            re_pass=request.POST.get("re_pass")
+            en=reg(name=name,email=email,pass1=pass1,re_pass=re_pass)
+            en.save()
     return render(request, 'signup.html')
+
+
+#def index(request):
+ #   return render (request, 'social media.html')
+
+
 
     # else:
     #     return HttpResponse('not found')
@@ -57,7 +73,7 @@ def register(request):
         pass2 = request.POST['re_pass']
 
         # 2 may check for arrorneous inputs
-        if len(username)>10:
+        if len(username)>50:
             messages.error(request,"username must be under must be under 10 characters")
             return redirect('login')
             
@@ -69,10 +85,8 @@ def register(request):
         if pass1 != pass2:
             messages.error(request,"password do not match")
             return redirect('login')
-           
-        
-        return render(request, 'register.html')
-         #else: return  HttpResponse('not found')
+    return render(request, 'register.html')
+        #else: return  HttpResponse('not found')
 
 
       
