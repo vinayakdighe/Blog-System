@@ -10,6 +10,8 @@ urlpatterns = [
    path('signup/register', views.register, name='register'),
    #changed by samruddhi
    path('saveRegister/',views.saveRegister,name='saveRegister'),
+   path('savelogin/',views.savelogin,name='savelogin'),
+
    #upto these
    path('login/',views.login, name='login'),
    path('online marketing/',views.writting,name='online marketing'),

@@ -1,9 +1,11 @@
 from colorsys import TWO_THIRD
 from importlib import import_module
 from pyexpat.errors import messages
+from unicodedata import name
 from urllib import response
 #samruddhi add model here
-from first.models import reg
+from first.models import reg,Login
+
 #upto this
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login,authenticate
@@ -31,19 +33,26 @@ def writting(request):
 #make change by samruddhi
 def saveRegister(request):
     if request.method=="POST":
-            name=request.POST.get("name")
-            email=request.POST.get("email")
-            pass1=request.POST.get("pass1")
-            re_pass=request.POST.get("re_pass")
-            en=reg(name=name,email=email,pass1=pass1,re_pass=re_pass)
-            en.save()
+        name=request.POST.get("name")
+        email=request.POST.get("email")
+        pass1=request.POST.get("pass1")
+        re_pass=request.POST.get("re_pass")
+        en=reg(name=name,email=email,pass1=pass1,re_pass=re_pass)
+        en.save()
     return render(request, 'signup.html')
 
 
 #def index(request):
  #   return render (request, 'social media.html')
 
+def savelogin(request):
 
+    if request.method=="POST":
+        name=request.POST.get("name")
+        pass1=request.POST.get("pass1")
+        en1=Login(name=name,pass1=pass1)
+        en1.save()
+    return render(request, 'login.html')
 
     # else:
     #     return HttpResponse('not found')
